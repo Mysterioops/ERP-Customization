@@ -8,6 +8,7 @@ app_license = "mit"
 required_apps = ["erpnext", "india_compliance"]
 
 after_install = "erptask.install.after_install"
+before_uninstall = "erptask.uninstall.before_uninstall"
 
 doctype_js = {
     "Purchase Invoice": "public/js/purchase_invoice.js"
@@ -17,11 +18,11 @@ doctype_list_js = {
 }
 doc_events = {
     "Sales Invoice": {
-        "before_insert": "erptask.overrides.sales_invoice.before_insert",
-        "before_save": "erptask.overrides.sales_invoice.before_save",
-        "validate": "erptask.install.validate_sales_invoice",
+        "before_insert": "erptask.overrides.so_to_invoice.before_insert",
+        "before_save": "erptask.overrides.export_account.before_save",
+        "validate": "erptask.setup.workflow.validate_sales_invoice",
     },
     "Company": {
-        "after_insert": "erptask.install.create_warehouses_for_company",
+        "after_insert": "erptask.setup.warehouses.create_warehouses_for_company",
     }
 }
